@@ -33,12 +33,17 @@ public class EnemyAI : MonoBehaviour {
 	// The waypoint we are currently moving towards
 	private int currentWaypoint = 0;
 
+	private bool searchingForPlayer = false;
+
 	void Start() {
 		seeker = GetComponent<Seeker>();
 		rb = GetComponent<Rigidbody2D>();
 
 		if (target == null) {
-			Debug.LogError("No Player found.");
+			if (!searchingForPlayer) {
+				searchingForPlayer = true;
+				StartCoroutine(SearchForPlayer());
+			}
 			return;
 		}
 
@@ -48,10 +53,28 @@ public class EnemyAI : MonoBehaviour {
 		StartCoroutine(UpdatePath ());
 	}
 
+	IEnumerator SearchForPlayer() {
+		// Checks for a valid Player objects
+		GameObject sResult = GameObject.FindGameObjectWithTag("Player");
+		//If it can't find one, it waits half a second and then loops
+		if (sResult == null) {
+			yield return new WaitForSeconds(0.5f);
+			StartCoroutine(SearchForPlayer());
+		} else {
+			target = sResult.transform;
+			searchingForPlayer = false;
+			StartCoroutine(UpdatePath());
+			yield return false;
+		}
+	}
+
 	IEnumerator UpdatePath() {
 		if (target == null) {
-			//TODO: Insert a palyer search here.
-			yield return false; // This is a change in the API - now you need to use yield for enumerators
+			if (!searchingForPlayer) {
+				searchingForPlayer = true;
+				StartCoroutine(SearchForPlayer());
+			}
+			yield return false;
 		}
 
 		// Start a new path to the target position and return the result to the OnPathComplete method
@@ -73,7 +96,10 @@ public class EnemyAI : MonoBehaviour {
 	void FixedUpdate() {
 
 		if (target == null) {
-			//TODO: Insert a palyer search here.
+			if (!searchingForPlayer) {
+				searchingForPlayer = true;
+				StartCoroutine(SearchForPlayer());
+			}
 			return;
 		}
 
