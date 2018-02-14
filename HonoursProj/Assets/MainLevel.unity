@@ -1110,6 +1110,7 @@ GameObject:
   - component: {fileID: 1715252885}
   - component: {fileID: 1715252884}
   - component: {fileID: 1715252888}
+  - component: {fileID: 1715252889}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -1156,12 +1157,12 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingPath: -1
+  m_RenderingPath: 1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -1198,6 +1199,18 @@ MonoBehaviour:
   lookAheadReturnSpeed: 1
   lookAheadMoveThreshold: 0.15
   yPosRestriction: -1
+--- !u!114 &1715252889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1715252883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: a1ee0a44ab21a8d4988847f7c2c4cdad, type: 2}
 --- !u!1 &1838067674 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1949123417865324, guid: bd6aa07905be5dd4699b5af15e33bcd7,
