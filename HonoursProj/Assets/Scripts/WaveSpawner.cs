@@ -17,17 +17,30 @@ public class WaveSpawner : MonoBehaviour {
 
 	public Wave[] waves;
 	private int nextWave = 0; // Index of wave
+	// Getter for NextWave. Good coding practice.
+	public int NextWave {
+		get { return nextWave + 1; }
+	}
 
 	public Transform[] spawnPoints;
 
 	public float timeBetweenWaves = 5f;
+
 	private float waveCountdown;
+	// Getter to retrieve WaveCountdown - again good coding practice
+	public float WaveCountdown {
+		get { return waveCountdown + 1f; }
+	}
 
 	// Timer inbetween enemy search for performance reasons
 	private float searchTimer = 1f;
 	
 	// Initialize the enum and default it to COUNTING
 	private SpawnState state = SpawnState.COUNTING;
+	// Getter so that we can access the SpawnState without making it public
+	public SpawnState State {
+		get { return state; }
+	}
 
 	// Use this for initialization
 	void Start () {
