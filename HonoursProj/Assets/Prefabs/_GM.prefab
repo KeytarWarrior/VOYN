@@ -198,6 +198,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 4757932119607256, guid: 57c07b7161cef654b9a7676c173d358a,
     type: 2}
   cameraShake: {fileID: 114989151081248342}
+  gameOverUI: {fileID: 0}
 --- !u!114 &114336790018460624
 MonoBehaviour:
   m_ObjectHideFlags: 1
