@@ -7,7 +7,10 @@ public class GameMaster : MonoBehaviour {
 	public static GameMaster gm;
 
 	// Same as before - failsafe to ensure we can access it but can't change it from outside
-	private static int _remainingLives = 3;
+	//IMPORTANT NOTE: Static variables are not reset - theya re carried over from scene to scene
+	[SerializeField]
+	private int maxLives = 3;
+	private static int _remainingLives;
 	public static int RemainingLives {
 		get { return _remainingLives; }
 	}
@@ -31,6 +34,7 @@ public class GameMaster : MonoBehaviour {
 		if(cameraShake == null) {
 			Debug.LogError("No camera shake referenced in GameMaster");
 		}
+		_remainingLives = maxLives;
 	}
 
 	public void EndGame() {
