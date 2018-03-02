@@ -454,6 +454,8 @@ MonoBehaviour:
   stats:
     maxHealth: 150
   fallBoundary: -20
+  deathSoundName: DeathVoice
+  damageSoundName: Grunt
   statusIndicator: {fileID: 114844273887674244}
 --- !u!114 &114684816815028092
 MonoBehaviour:
@@ -513,6 +515,7 @@ MonoBehaviour:
   effectSpawnRate: 10
   camShakeAmt: 0.05
   camShakeLength: 0.1
+  weaponShootSound: DefaultShot
 --- !u!114 &114948660385558922
 MonoBehaviour:
   m_ObjectHideFlags: 1

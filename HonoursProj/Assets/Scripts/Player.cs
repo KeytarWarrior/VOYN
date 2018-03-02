@@ -21,7 +21,14 @@ public class Player : MonoBehaviour {
 
 	public PlayerStats stats = new PlayerStats();
 
+	// Variable for falling out of bounds
 	public int fallBoundary = -20;
+
+	// SFX variables
+	public string deathSoundName = "DeathVoice";
+	public string damageSoundName = "Grunt";
+
+	private AudioManager audioManager;
 
 	[SerializeField]
 	private StatusIndicator statusIndicator;
@@ -34,6 +41,11 @@ public class Player : MonoBehaviour {
 		} else {
 			statusIndicator.SetHealth(stats.curHealth, stats.maxHealth);
 		}
+
+		audioManager = AudioManager.audioManInstance;
+		if(audioManager == null) {
+			Debug.LogError("No AudioManager in scene.");
+		}
 	}
 
 	public void Update() {
@@ -45,7 +57,14 @@ public class Player : MonoBehaviour {
 	public void DamagePlayer (int damage) {
 		stats.curHealth -= damage;
 		if (stats.curHealth <= 0) {
+			// Play death SFX
+			audioManager.PlaySound(deathSoundName);
+
+			// Kill palyerr
 			GameMaster.KillPlayer(this);
+		} else {
+			// Play damage SFX
+			audioManager.PlaySound(damageSoundName);
 		}
 
 		statusIndicator.SetHealth(stats.curHealth, stats.maxHealth);

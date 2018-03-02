@@ -20,33 +20,47 @@ public class Sound {
 	[Range(0f, 0.5f)]
 	public float randomPitch = 0.1f;
 
+	// Quick custom variable to toggle looping - defaults to off
+	public bool loop = false;
+
 	private AudioSource source;
 
 	public void SetSource(AudioSource _source) {
 		source = _source;
 		source.clip = clip;
+		source.loop = loop;
 	}
 
+	// Plays associated sound with some variance
 	public void Play() {
-		// Plays associated sound with some variance
 		source.volume = volume * (1 + Random.Range(-randomVolume/2f, randomVolume/2f));
 		source.pitch = pitch * (1 + Random.Range(-randomPitch / 2f, randomPitch / 2f));
 		source.Play();
+	}
+
+	// Stops sound
+	public void Stop() {
+		source.Stop();
 	}
 }
 
 public class AudioManager : MonoBehaviour {
 
-	public static AudioManager instance;
+	public static AudioManager audioManInstance;
 
 	[SerializeField]
 	Sound[] sounds;
 
 	private void Awake() {
-		if (instance != null) {
-			Debug.LogError("More than one AudioManager in the scene.");
+		if (audioManInstance != null) {
+			// Checks for redundancy and destroys duplicates
+			if(audioManInstance != this) {
+				Destroy(this.gameObject);
+			}
 		} else {
-			instance = this;
+			audioManInstance = this;
+			// Makes sure when a new scene is loaded, the object carries over
+			DontDestroyOnLoad(this);
 		}
 	}
 
@@ -57,6 +71,8 @@ public class AudioManager : MonoBehaviour {
 			_go.transform.SetParent(this.transform); // Used to clean up the Hierarchy on runtime (nests it under parent)
 			sounds[i].SetSource(_go.AddComponent<AudioSource>());
 		}
+
+		PlaySound("Music");
 	}
 
 	public void PlaySound (string _name) {
@@ -64,6 +80,19 @@ public class AudioManager : MonoBehaviour {
 			// Check if it's the correct sound
 			if (sounds[i].name == _name) {
 				sounds[i].Play();
+				return;
+			}
+		}
+
+		//	No sound  found with that _name
+		Debug.LogWarning("AudioManager: Sound not found in list: " + _name);
+	}
+
+	public void StopSound(string _name) {
+		for (int i = 0; i < sounds.Length; i++) {
+			// Check if it's the correct sound
+			if (sounds[i].name == _name) {
+				sounds[i].Stop();
 				return;
 			}
 		}

@@ -23,12 +23,17 @@ public class Enemy : MonoBehaviour {
 
 	public EnemyStats stats = new EnemyStats();
 
-	// COntained here so that they can be different based on enemy strength
+	// Contained here so that they can be different based on enemy strength
+	// Particles
 	public Transform deathParticles;
+	// Camera Shake parameters
 	public float shakeAmt = 0.1f;
 	public float shakeLength = 0.1f;
 
-	// Headers just write text in the editor
+	//Sets up the death SFX that is passed onto the AudioManager
+	public string deathSoundName = "Explosion";
+
+	// Headers just write custom header text in the editor
 	[Header("Optional: ")]
 	[SerializeField]
 	private StatusIndicator statusIndicator;

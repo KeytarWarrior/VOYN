@@ -11,6 +11,9 @@ namespace UnityStandardAssets._2D
         [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
         [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
 
+		[SerializeField]
+		string landingSoundName = "LandingFootsteps";
+
         private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
         const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
         private bool m_Grounded;            // Whether or not the player is grounded.
@@ -22,7 +25,9 @@ namespace UnityStandardAssets._2D
 
         Transform playerGraphics;           // Reference to the player graphics so we can change direction
 
-            private void Awake()
+		AudioManager audioManager;
+
+        private void Awake()
         {
             // Setting up references.
             m_GroundCheck = transform.Find("GroundCheck");
@@ -34,10 +39,18 @@ namespace UnityStandardAssets._2D
                 Debug.LogError("Let's freak out! There is no 'Graphics' object as a child of the player.");
             }
         }
-       
-            private void FixedUpdate()
+
+		private void Start() {
+			audioManager = AudioManager.audioManInstance;
+			if (audioManager == null) {
+				Debug.LogError("No AudioManager found!");
+			}
+		}
+
+		private void FixedUpdate()
         {
             m_Grounded = false;
+			bool wasGrounded = m_Grounded;
 
             // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
             // This can be done using layers instead but Sample Assets will not overwrite your project settings.
@@ -48,6 +61,11 @@ namespace UnityStandardAssets._2D
                     m_Grounded = true;
             }
             m_Anim.SetBool("Ground", m_Grounded);
+
+			// Plays footstep SFX, last bit was to make sure sound doesn't duplicate endlessly on landing (only first hit has velocity)
+			if(wasGrounded != m_Grounded && m_Grounded == true && m_Rigidbody2D.velocity.y != 0) {
+				audioManager.PlaySound(landingSoundName);
+			}
 
             // Set the vertical animation
             m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);

@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour {
 
+	// Weapon stats variables
 	public float fireRate = 0;
 	public int Damage = 10;
 	public LayerMask whatToHit;
 
+	// Variables for the Shot VFX
 	public Transform BulletTrailPrefab;
 	public Transform HitPrefab;
 	public Transform MuzzleFlashPrefab;
@@ -19,8 +21,14 @@ public class Weapon : MonoBehaviour {
 	public float camShakeLength = 0.1f;
 	CameraShake camShake;
 
+	// Making sure the shoot SFX can be changed from inspector for each weapon
+	public string weaponShootSound = "DefaultShot";
+
 	float timeToFire = 0;
 	Transform firePoint;
+
+	// Caching
+	AudioManager audioManager;
 
 	// Use this for initialization
 	void Awake () {
@@ -34,6 +42,12 @@ public class Weapon : MonoBehaviour {
 		camShake = GameMaster.gm.GetComponent<CameraShake>();
 		if (camShake == null)
 			Debug.LogError("No Camera Shake script found on GM");
+
+		// Chaching
+		audioManager = AudioManager.audioManInstance;
+		if (audioManager == null) {
+			Debug.LogError("No AudioManager found in scene");
+		}
 	}
 
 	// Update is called once per frame
@@ -108,5 +122,8 @@ public class Weapon : MonoBehaviour {
 
 		// Shake the camera
 		camShake.Shake(camShakeAmt, camShakeLength);
+
+		// Play shoot sound
+		audioManager.PlaySound(weaponShootSound);
 	}
 }

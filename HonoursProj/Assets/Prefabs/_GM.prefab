@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 114233227230335782}
   - component: {fileID: 114989151081248342}
   - component: {fileID: 114225180240796550}
-  - component: {fileID: 114095071373968048}
   m_Layer: 0
   m_Name: _GM
   m_TagString: GM
@@ -73,24 +72,6 @@ Transform:
   m_Father: {fileID: 4590041826487648}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114095071373968048
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1949123417865324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee176c832ab313b47a653b9b38948469, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: Respawn
-    clip: {fileID: 8300000, guid: 4c05e90bf2b57294fa2c7fdc873319a3, type: 3}
-    volume: 0.7
-    pitch: 1
-    randomVolume: 0
-    randomPitch: 0
 --- !u!114 &114225180240796550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -136,6 +117,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 4847669013532744}
   spawnPrefab: {fileID: 1569903337212188, guid: 57c07b7161cef654b9a7676c173d358a,
     type: 2}
+  respawnCountdownSoundName: RespawnCountdown
   spawnSoundName: Respawn
   cameraShake: {fileID: 114989151081248342}
   gameOverUI: {fileID: 0}
