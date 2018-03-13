@@ -202,6 +202,7 @@ MonoBehaviour:
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 4294967039
+  landingSoundName: LandingFootsteps
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -503,7 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 0
-  Damage: 10
+  Damage: 25
   whatToHit:
     serializedVersion: 2
     m_Bits: 4294967035

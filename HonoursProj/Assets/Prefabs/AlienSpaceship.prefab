@@ -268,12 +268,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    maxHealth: 100
+    maxHealth: 125
     damage: 25
   deathParticles: {fileID: 4175971702497546, guid: 6936637fdf30a764aa59a187a67f6205,
     type: 2}
   shakeAmt: 0.1
   shakeLength: 0.1
+  deathSoundName: Explosion
   statusIndicator: {fileID: 114616792444244448}
 --- !u!114 &114616792444244448
 MonoBehaviour:
