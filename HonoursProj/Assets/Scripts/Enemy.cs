@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Making sure the needed component is there
+[RequireComponent(typeof(EnemyAI))]
 public class Enemy : MonoBehaviour {
 
 	[System.Serializable]
@@ -45,9 +47,17 @@ public class Enemy : MonoBehaviour {
 			statusIndicator.SetHealth(stats.CurHealth, stats.maxHealth);
 		}
 
+		//Subscribes the listed method to the delegate. Note that you msut first call the gm script
+		GameMaster.gm.onToggleUpgradeMenu += OnUpgradeMenuToggle;
+
 		if (deathParticles == null) {
 			Debug.LogError("No death aprticles referenced");
 		}
+	}
+
+	void OnUpgradeMenuToggle(bool active) {
+		// If upgrade menu is active, we don't want the enemy AI script to be active
+		GetComponent<EnemyAI>().enabled = !active;
 	}
 
 	public void DamageEnemy(int damage) {
@@ -67,5 +77,10 @@ public class Enemy : MonoBehaviour {
 			_player.DamagePlayer(stats.damage);
 			DamageEnemy(99999);
 		}
+	}
+
+	void OnDestroy() {
+		// Unsubscribes from delegate once it is destroyed, so a null object isn't referenced
+		GameMaster.gm.onToggleUpgradeMenu -= OnUpgradeMenuToggle;
 	}
 }

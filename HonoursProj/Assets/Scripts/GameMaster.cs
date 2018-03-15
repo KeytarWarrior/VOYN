@@ -15,6 +15,11 @@ public class GameMaster : MonoBehaviour {
 		get { return _remainingLives; }
 	}
 
+	// Currency initialization
+	[SerializeField]
+	private int startingMoney;
+	public static int Money;
+
 	void Awake() {
 		if (gm == null) {
 			gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
@@ -36,6 +41,16 @@ public class GameMaster : MonoBehaviour {
 	[SerializeField]
 	private GameObject gameOverUI;
 
+	[SerializeField]
+	private GameObject upgradeMenu;
+
+	// Delegate, so that we can pause certain functions while upgrade menu is up, without pausing the entire game
+	// Creates a type that can strore a bunch of references to functions. 
+	// Can be invoked to call all the registered to it functions.
+	public delegate void UpgradeMenuCallback(bool active);
+	// Instance of the above type
+	public UpgradeMenuCallback onToggleUpgradeMenu;
+
 	// cache
 	private AudioManager audioManager;
 
@@ -45,11 +60,27 @@ public class GameMaster : MonoBehaviour {
 		}
 		_remainingLives = maxLives;
 
-		// caching
+		// Money
+		Money = startingMoney;
+
+		// Caching
 		audioManager = AudioManager.audioManInstance;
 		if (audioManager == null) {
 			Debug.LogError("No AudioManager found in the scene.");
 		}
+	}
+
+	private void Update() {
+		if (Input.GetKeyDown(KeyCode.U)) {
+			ToggleUpgradeMenu();
+		}
+	}
+
+	private void ToggleUpgradeMenu() {
+		// Sets the state to the opposite of what it currently is - better than hard coding it to on or off
+		upgradeMenu.SetActive(!upgradeMenu.activeSelf);
+		// Invokes all methods subscribed to this event
+		onToggleUpgradeMenu.Invoke(upgradeMenu.activeSelf);
 	}
 
 	public void EndGame() {
