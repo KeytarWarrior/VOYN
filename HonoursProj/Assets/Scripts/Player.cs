@@ -24,6 +24,9 @@ public class Player : MonoBehaviour {
 
 		stats = PlayerStats.instance;
 
+		// Safety check to make sure palyer health has been reset properly
+		stats.curHealth = stats.maxHealth;
+
 		if (statusIndicator == null) {
 			Debug.LogError("No status indicator referenced on Player");
 		} else {
@@ -37,6 +40,17 @@ public class Player : MonoBehaviour {
 		if(audioManager == null) {
 			Debug.LogError("No AudioManager in scene.");
 		}
+
+
+		// Calls on the health regen rate method
+		InvokeRepeating("RegenHealth", 1f/stats.healthRegenRate, 1f/stats.healthRegenRate);
+	}
+
+	// Health regeneration logic
+	void RegenHealth() {
+		// Increments health and updates the status indicator
+		stats.curHealth += 1;
+		statusIndicator.SetHealth(stats.curHealth, stats.maxHealth);
 	}
 
 	public void Update() {

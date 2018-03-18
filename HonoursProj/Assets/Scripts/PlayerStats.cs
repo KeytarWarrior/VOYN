@@ -12,11 +12,14 @@ public class PlayerStats : MonoBehaviour {
 		set { _curHealth = Mathf.Clamp(value, 0, maxHealth); }
 	}
 
+	public float healthRegenRate = 2f;
+
+	// Player Movement Speed
+	public float movementSpeed = 10f;
+
 	void Awake() {
 		if (instance == null) {
 			instance = this;
 		}
-
-		curHealth = maxHealth;
 	}
 }
