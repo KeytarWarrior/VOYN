@@ -129,3 +129,17 @@ MonoBehaviour:
     randomVolume: 0.2
     randomPitch: 0.1
     loop: 0
+  - name: NoMoney
+    clip: {fileID: 8300000, guid: 323867763524ae54caa06b6ee6952d98, type: 3}
+    volume: 0.2
+    pitch: 1
+    randomVolume: 0.2
+    randomPitch: 0.1
+    loop: 0
+  - name: Money
+    clip: {fileID: 8300000, guid: 2a2873481e3efba4ab74596e37ecd19c, type: 3}
+    volume: 0.1
+    pitch: 1
+    randomVolume: 0.2
+    randomPitch: 0.1
+    loop: 0

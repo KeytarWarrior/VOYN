@@ -8,16 +8,14 @@ public class GameMaster : MonoBehaviour {
 
 	// Same as before - failsafe to ensure we can access it but can't change it from outside
 	//IMPORTANT NOTE: Static variables are not reset - theya re carried over from scene to scene
-	[SerializeField]
-	private int maxLives = 3;
+	[SerializeField] private int maxLives = 3;
 	private static int _remainingLives;
 	public static int RemainingLives {
 		get { return _remainingLives; }
 	}
 
 	// Currency initialization
-	[SerializeField]
-	private int startingMoney;
+	[SerializeField] private int startingMoney;
 	public static int Money;
 
 	void Awake() {
@@ -38,11 +36,9 @@ public class GameMaster : MonoBehaviour {
 
 	public CameraShake cameraShake;
 
-	[SerializeField]
-	private GameObject gameOverUI;
-
-	[SerializeField]
-	private GameObject upgradeMenu;
+	[SerializeField] private GameObject gameOverUI;
+	[SerializeField] private GameObject upgradeMenu;
+	[SerializeField] private WaveSpawner waveSpawner;
 
 	// Delegate, so that we can pause certain functions while upgrade menu is up, without pausing the entire game
 	// Creates a type that can strore a bunch of references to functions. 
@@ -51,7 +47,7 @@ public class GameMaster : MonoBehaviour {
 	// Instance of the above type
 	public UpgradeMenuCallback onToggleUpgradeMenu;
 
-	// cache
+	// Cache
 	private AudioManager audioManager;
 
 	private void Start() {
@@ -76,11 +72,10 @@ public class GameMaster : MonoBehaviour {
 		}
 	}
 
-	private void ToggleUpgradeMenu() {
-		// Sets the state to the opposite of what it currently is - better than hard coding it to on or off
-		upgradeMenu.SetActive(!upgradeMenu.activeSelf);
-		// Invokes all methods subscribed to this event
-		onToggleUpgradeMenu.Invoke(upgradeMenu.activeSelf);
+	private void ToggleUpgradeMenu() {	
+		upgradeMenu.SetActive(!upgradeMenu.activeSelf); // Sets the state to the opposite of what it currently is - better than hard coding it to on or off		
+		waveSpawner.enabled = !upgradeMenu.activeSelf; // Makes sure that if the upgrade menu is enabled, the enemy spawner is disabled
+		onToggleUpgradeMenu.Invoke(upgradeMenu.activeSelf); // Invokes all methods subscribed to this event
 	}
 
 	public void EndGame() {
@@ -90,9 +85,8 @@ public class GameMaster : MonoBehaviour {
 		gameOverUI.SetActive(true);
 	}
 
-	public IEnumerator _RespawnPlayer() {
-		// Uses the new AudioManager script logic to play sound - much cleaner & more modular
-		audioManager.PlaySound(respawnCountdownSoundName);
+	public IEnumerator _RespawnPlayer() {	
+		audioManager.PlaySound(respawnCountdownSoundName);  // Uses the new AudioManager script logic to play sound - much cleaner & more modular
 		yield return new WaitForSeconds(3f);
 
 		audioManager.PlaySound(spawnSoundName);
@@ -118,9 +112,11 @@ public class GameMaster : MonoBehaviour {
 
 	// Configured so that there can be separate camera shake & death particles for each enemy
 	public void _KillEnemy(Enemy _enemy) {
-		// Death Sound - Modular so can eb setup for different enemies
-		audioManager.PlaySound(_enemy.deathSoundName);
-		
+		audioManager.PlaySound(_enemy.deathSoundName);  // Death Sound - Modular so can be setup for different enemies
+
+		Money += _enemy.moneyDrop;  // Adds the Money dropped from enemy to resource. Modular so can be different for different enemy types.
+		audioManager.PlaySound("Money");
+
 		// Adding Particles - Instanced so we can destroy it after it's done 
 		Transform _clone = Instantiate(_enemy.deathParticles, _enemy.transform.position, Quaternion.identity) as Transform;
 		Destroy(_clone.gameObject, 4f);

@@ -7,6 +7,7 @@ public class UpgradeMenu : MonoBehaviour {
 	[SerializeField] private Text speedText;
 	[SerializeField] private float healthMultiplier = 1.3f;
 	[SerializeField] private float movementSpeedMultiplier = 1.2f;
+	[SerializeField] private int upgradeCost = 50;
 
 	private PlayerStats stats;
 
@@ -24,15 +25,26 @@ public class UpgradeMenu : MonoBehaviour {
 
 	// Applies health upgrade multiplier
 	public void UpgradeHealth() {
-		// Need to cast multiplier into an int
-		stats.maxHealth = (int)(stats.maxHealth * healthMultiplier);
+		if(GameMaster.Money < upgradeCost) {
+			AudioManager.audioManInstance.PlaySound("NoMoney");
+			return;
+		}
+		stats.maxHealth = (int)(stats.maxHealth * healthMultiplier);    // Need to cast multiplier into an int
+		GameMaster.Money -= upgradeCost;    // Substracts money when upgrading
+		AudioManager.audioManInstance.PlaySound("Money");
 		UpdateValues();
 	}
 
 	// Applies health upgrade multiplier
 	public void UpgradeSpeed() {
+		if (GameMaster.Money < upgradeCost) {
+			AudioManager.audioManInstance.PlaySound("NoMoney");
+			return;
+		}
 		// Already float so no casting. However, number is rounded so it doesn't clip outside UI boundaries
 		stats.movementSpeed = Mathf.Round (stats.movementSpeed * movementSpeedMultiplier);
+		GameMaster.Money -= upgradeCost;    // Substracts money when upgrading
+		AudioManager.audioManInstance.PlaySound("Money");
 		UpdateValues();
 	}
 }

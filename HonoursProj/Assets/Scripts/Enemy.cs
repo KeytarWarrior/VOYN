@@ -25,18 +25,17 @@ public class Enemy : MonoBehaviour {
 
 	public EnemyStats stats = new EnemyStats();
 
-	// Contained here so that they can be different based on enemy strength
-	// Particles
+	// Particles - Contained here so that they can be different based on enemy strength
 	public Transform deathParticles;
 	// Camera Shake parameters
 	public float shakeAmt = 0.1f;
 	public float shakeLength = 0.1f;
 
-	//Sets up the death SFX that is passed onto the AudioManager
-	public string deathSoundName = "Explosion";
+	public string deathSoundName = "Explosion"; //Sets up the death SFX that is passed onto the AudioManager
 
-	// Headers just write custom header text in the editor
-	[Header("Optional: ")]
+	public int moneyDrop = 10;	// Value of money dropped on death
+
+	[Header("Optional: ")]  // Headers just write custom header text in the editor
 	[SerializeField]
 	private StatusIndicator statusIndicator;
 
@@ -47,11 +46,11 @@ public class Enemy : MonoBehaviour {
 			statusIndicator.SetHealth(stats.CurHealth, stats.maxHealth);
 		}
 
-		//Subscribes the listed method to the delegate. Note that you msut first call the gm script
+		//Subscribes the listed method to the delegate. Note that you must first call the gm script
 		GameMaster.gm.onToggleUpgradeMenu += OnUpgradeMenuToggle;
 
 		if (deathParticles == null) {
-			Debug.LogError("No death aprticles referenced");
+			Debug.LogError("No death particles referenced");
 		}
 	}
 

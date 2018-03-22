@@ -109,11 +109,10 @@ public class WaveSpawner : MonoBehaviour {
 		// Spawns appropriate number of enemies and waits inbetween according to set rate
 		for (int i = 0; i < _wave.count; i++) {
 			SpawnEnemy(_wave.enemy);
-			// Because of IEnum we can wait for a bit before continuing with loop
-			yield return new WaitForSeconds(1f / _wave.rate);
+			yield return new WaitForSeconds(1f / _wave.rate); // Because of IEnum we can wait for a bit before continuing with loop
 		}
 
-		state = SpawnState.WAITING; // Waiting for palyer to kill wave
+		state = SpawnState.WAITING; // Waiting for player to kill wave
 
 		yield break;
 	}
