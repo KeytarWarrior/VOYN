@@ -17,8 +17,8 @@ public class Weapon : MonoBehaviour {
 	public float effectSpawnRate = 10;
 
 	// Handles camera shaking
-	public float camShakeAmt = 0.05f;
-	public float camShakeLength = 0.1f;
+	public float camShakeAmount = 0.05f;
+	public float camShakeDuration = 0.1f;
 	CameraShake camShake;
 
 	// Making sure the shoot SFX can be changed from inspector for each weapon
@@ -121,7 +121,7 @@ public class Weapon : MonoBehaviour {
 		Destroy(clone.gameObject, 0.02f);
 
 		// Shake the camera
-		camShake.Shake(camShakeAmt, camShakeLength);
+		camShake.Shake(camShakeAmount, camShakeDuration);
 
 		// Play shoot sound
 		audioManager.PlaySound(weaponShootSound);
