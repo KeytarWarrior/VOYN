@@ -83,7 +83,7 @@ public class Enemy : MonoBehaviour {
 		Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
 
 		// Knock back from weapon - operates within random range for variety
-		Vector2 incomingVec = new Vector2(Random.Range(150f, 700f), Random.Range(150f, 700f));
+		Vector2 incomingVec = new Vector2(Random.Range(150f, 400f), Random.Range(150f, 400f));
 		rb.AddForce(incomingVec);
 
 		// Damage flash

@@ -8,6 +8,9 @@ public class Player : MonoBehaviour {
 	// Variable for falling out of bounds
 	public int fallBoundary = -20;
 
+	// Bool that keeps direction
+	bool faceRight = true;
+
 	// SFX variables
 	public string deathSoundName = "DeathVoice";
 	public string damageSoundName = "Grunt";
@@ -87,4 +90,23 @@ public class Player : MonoBehaviour {
 		statusIndicator.SetHealth(stats.curHealth, stats.maxHealth);
 	}
 
+	// Syncs with the movement controller so we know which way player body is facing
+	public void SyncDirectionFacing(bool direction) {
+		faceRight = direction;
+	}
+
+	// Knock back from whatever hit - operates within random range for variety and checks for direction
+	public void Knockback(bool rightDir) {
+		Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
+
+		// Checks which way palyer is facing - we only want a rudimentary knock back to ensure player doesn't clip evnrionment when shooting diagonally
+		// A full directional one based on inverse of weapon fire vector would be messy and wouldn't serve the game's 
+		if (rightDir) {
+			Vector2 pushLeftVec = new Vector2(Random.Range(150f, 400f), 0);
+			rb.AddForce(pushLeftVec);
+		} else {
+			Vector2 pusRightVec = new Vector2(Random.Range(-150f, -400f), 0);
+			rb.AddForce(pusRightVec);
+		}
+	}
 }

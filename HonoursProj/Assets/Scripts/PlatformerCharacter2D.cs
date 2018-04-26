@@ -21,7 +21,10 @@ namespace UnityStandardAssets._2D
         const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
-        private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+        public bool m_FacingRight = true;  // For determining which way the player is currently facing.
+
+		// Reference to player script
+		public Player player;
 
         Transform playerGraphics;           // Reference to the player graphics so we can change direction
 
@@ -127,6 +130,7 @@ namespace UnityStandardAssets._2D
         {
             // Switch the way the player is labelled as facing.
             m_FacingRight = !m_FacingRight;
+			player.SyncDirectionFacing(m_FacingRight);
 
             // Multiply the player's x local scale by -1.
             Vector3 theScale = playerGraphics.localScale;
