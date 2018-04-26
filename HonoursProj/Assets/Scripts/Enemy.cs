@@ -80,6 +80,13 @@ public class Enemy : MonoBehaviour {
 	public IEnumerator DamageEnemyCo (int damage) {
 		// Finds the sprite renderer used for damage flash
 		SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+		Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
+
+		// Knock back from weapon - operates within random range for variety
+		Vector2 incomingVec = new Vector2(Random.Range(150f, 700f), Random.Range(150f, 700f));
+		rb.AddForce(incomingVec);
+
+		// Damage flash
 		sr.material.SetFloat("_FlashAmount", 1);
 		stats.CurHealth -= damage;
 		if (stats.CurHealth <= 0) {
