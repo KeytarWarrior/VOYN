@@ -76,8 +76,9 @@ public class Weapon : MonoBehaviour {
 			Debug.DrawLine(firePointPosition, hit.point, Color.red);
 			Enemy enemy = hit.collider.GetComponent<Enemy>();
 			if (enemy != null) {
-				enemy.DamageEnemy(Damage);
-				//Debug.Log("We hit " + hit.collider.name + " and did" + Damage + " damage");
+				enemy.StartCoroutine("DamageEnemyCo", Damage);
+				//enemy.DamageEnemy(Damage);
+				Debug.Log("We hit " + hit.collider.name + " and did" + Damage + " damage");
 			}
 		}
 

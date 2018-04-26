@@ -78,14 +78,12 @@ public class Player : MonoBehaviour {
 		if (stats.curHealth <= 0) {
 			// Play death SFX
 			audioManager.PlaySound(deathSoundName);
-
 			// Kill palyerr
 			GameMaster.KillPlayer(this);
 		} else {
 			// Play damage SFX
 			audioManager.PlaySound(damageSoundName);
 		}
-
 		statusIndicator.SetHealth(stats.curHealth, stats.maxHealth);
 	}
 

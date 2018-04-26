@@ -31,6 +31,9 @@ public class Enemy : MonoBehaviour {
 	public float shakeAmt = 0.1f;
 	public float shakeLength = 0.1f;
 
+	// Variable that controls damage flash on hit
+	public float damageFlashLength = 0.05f;
+
 	public string deathSoundName = "Explosion"; //Sets up the death SFX that is passed onto the AudioManager
 
 	public int moneyDrop = 10;	// Value of money dropped on death
@@ -60,6 +63,9 @@ public class Enemy : MonoBehaviour {
 	}
 
 	public void DamageEnemy(int damage) {
+		// Finds the sprite renderer used for damage flash
+		SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+		sr.material.SetFloat("_FlashAmount", 1);
 		stats.CurHealth -= damage;
 		if (stats.CurHealth <= 0) {
 			GameMaster.KillEnemy(this);
@@ -68,6 +74,23 @@ public class Enemy : MonoBehaviour {
 		if (statusIndicator != null) {
 			statusIndicator.SetHealth(stats.CurHealth, stats.maxHealth);
 		}
+		sr.material.SetFloat("_FlashAmount", 0);
+	}
+
+	public IEnumerator DamageEnemyCo (int damage) {
+		// Finds the sprite renderer used for damage flash
+		SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+		sr.material.SetFloat("_FlashAmount", 1);
+		stats.CurHealth -= damage;
+		if (stats.CurHealth <= 0) {
+			GameMaster.KillEnemy(this);
+		}
+
+		if (statusIndicator != null) {
+			statusIndicator.SetHealth(stats.CurHealth, stats.maxHealth);
+		}
+		yield return new WaitForSeconds(damageFlashLength);
+		sr.material.SetFloat("_FlashAmount", 0);
 	}
 
 	private void OnCollisionEnter2D(Collision2D _colInfo) {

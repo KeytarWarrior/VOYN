@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 58342870838893380}
   - component: {fileID: 114610400870228780}
   m_Layer: 0
-  m_Name: AlienSpaceship
+  m_Name: AlienSpaceshipFlash
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,7 +273,6 @@ MonoBehaviour:
   deathParticles: {fileID: 400000, guid: c1f4e90b5b7b61647be95bb3d9050a5a, type: 2}
   shakeAmt: 0.1
   shakeLength: 0.1
-  damageFlashLength: 0.05
   deathSoundName: Explosion
   moneyDrop: 10
   statusIndicator: {fileID: 114616792444244448}
