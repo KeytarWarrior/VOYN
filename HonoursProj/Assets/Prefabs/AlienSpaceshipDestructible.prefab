@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 58342870838893380}
   - component: {fileID: 114610400870228780}
   m_Layer: 0
-  m_Name: AlienSpaceship
+  m_Name: AlienSpaceshipDestructible
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
