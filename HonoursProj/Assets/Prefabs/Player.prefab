@@ -71,7 +71,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.000008726646, w: 1}
   m_LocalPosition: {x: 0, y: 1.6, z: 0}
   m_LocalScale: {x: 1.7715329, y: 1.7715304, z: 1}
   m_Children:
@@ -128,9 +128,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.45}
+  m_Offset: {x: 0.0026973074, y: 0.09972248}
   serializedVersion: 2
-  m_Radius: 0.16
+  m_Radius: 0.22317146
 --- !u!61 &6100000
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -143,7 +143,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0040322095, y: -0.39650035}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -154,7 +154,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.68}
+  m_Size: {x: 0.27956942, y: 0.5482812}
   m_EdgeRadius: 0
 --- !u!95 &9500000
 Animator:
@@ -195,14 +195,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08f91df3bd212f429df17f53ce2f364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxSpeed: 10
-  m_JumpForce: 800
+  m_JumpForce: 650
   m_CrouchSpeed: 0.25
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 4294967039
+    m_Bits: 4294966493
   landingSoundName: LandingFootsteps
+  m_FacingRight: 1
+  player: {fileID: 114684510651925680}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -452,8 +453,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f7b2f3874495246b7d9a270c680592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats:
-    maxHealth: 150
   fallBoundary: -20
   deathSoundName: DeathVoice
   damageSoundName: Grunt
@@ -503,7 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfc333bdc8d6344f8159fa5516fbd0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0
+  fireRate: 5
   Damage: 25
   whatToHit:
     serializedVersion: 2
@@ -514,8 +513,10 @@ MonoBehaviour:
   MuzzleFlashPrefab: {fileID: 4383950300010808, guid: 94f59615cbe14964cbd0f5d6c68236e6,
     type: 2}
   effectSpawnRate: 10
-  camShakeAmt: 0.05
-  camShakeLength: 0.1
+  camShakeAmount: 0.05
+  camShakeDuration: 0.1
+  player: {fileID: 114684510651925680}
+  tr: {fileID: 0}
   weaponShootSound: DefaultShot
 --- !u!114 &114948660385558922
 MonoBehaviour:

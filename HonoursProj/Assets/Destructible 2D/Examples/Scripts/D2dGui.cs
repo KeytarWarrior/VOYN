@@ -67,12 +67,12 @@ namespace Destructible2D
 			var r2 = new Rect(5, 50 + 55 * 1, 100, 50);
 			var r3 = new Rect(5, 50 + 55 * 2, 100, 50);
 			
-			if (GUI.Button(r1, "Reload") == true)
+			/*if (GUI.Button(r1, "Reload") == true)
 			{
 				LoadLevel(GetCurrentLevel());
-			}
+			}*/
 			
-			if (GUI.Button(r2, "Prev") == true)
+			/*if (GUI.Button(r2, "Prev") == true)
 			{
 				var index = GetCurrentLevel() - 1;
 
@@ -82,9 +82,9 @@ namespace Destructible2D
 				}
 
 				LoadLevel(index);
-			}
+			}*/
 			
-			if (GUI.Button(r3, "Next") == true)
+			/*if (GUI.Button(r3, "Next") == true)
 			{
 				var index = GetCurrentLevel() + 1;
 
@@ -94,7 +94,7 @@ namespace Destructible2D
 				}
 
 				LoadLevel(index);
-			}
+			}*/
 			
 			// Draw FPS?
 			if (fps > 0.0f)

@@ -95,7 +95,7 @@ using UnityEngine;
 
 			if (hit.collider != null) {
 				Debug.DrawLine(firePointPosition, hit.point, Color.red);
-				Enemy enemy = hit.collider.GetComponent<Enemy>();
+			Enemy enemy = hit.collider.GetComponent<Enemy>();
 				if (enemy != null) {
 					enemy.StartCoroutine("DamageEnemyCo", Damage);
 					//enemy.DamageEnemy(Damage);
