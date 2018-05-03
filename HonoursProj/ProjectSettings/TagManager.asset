@@ -52,3 +52,9 @@ TagManager:
   - name: Foreground
     uniqueID: 2818846865
     locked: 0
+  - name: Darken
+    uniqueID: 3650427383
+    locked: 0
+  - name: Light
+    uniqueID: 914683325
+    locked: 0
