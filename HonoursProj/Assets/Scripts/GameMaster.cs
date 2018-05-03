@@ -38,6 +38,7 @@ public class GameMaster : MonoBehaviour {
 
 	[SerializeField] private GameObject gameOverUI;
 	[SerializeField] private GameObject upgradeMenu;
+	[SerializeField] private GameObject levelMenu;
 	[SerializeField] private WaveSpawner waveSpawner;
 
 	// Delegate, so that we can pause certain functions while upgrade menu is up, without pausing the entire game
@@ -69,6 +70,8 @@ public class GameMaster : MonoBehaviour {
 	private void Update() {
 		if (Input.GetKeyDown(KeyCode.U)) {
 			ToggleUpgradeMenu();
+		} else if (Input.GetKeyDown(KeyCode.L)) {
+			ToggleLevelMenu();
 		}
 	}
 
@@ -76,6 +79,12 @@ public class GameMaster : MonoBehaviour {
 		upgradeMenu.SetActive(!upgradeMenu.activeSelf); // Sets the state to the opposite of what it currently is - better than hard coding it to on or off		
 		waveSpawner.enabled = !upgradeMenu.activeSelf; // Makes sure that if the upgrade menu is enabled, the enemy spawner is disabled
 		onToggleUpgradeMenu.Invoke(upgradeMenu.activeSelf); // Invokes all methods subscribed to this event
+	}
+
+	private void ToggleLevelMenu() {
+		levelMenu.SetActive(!levelMenu.activeSelf); // Sets the state to the opposite of what it currently is - better than hard coding it to on or off		
+		waveSpawner.enabled = !levelMenu.activeSelf; // Makes sure that if the upgrade menu is enabled, the enemy spawner is disabled
+		onToggleUpgradeMenu.Invoke(levelMenu.activeSelf); // Invokes all methods subscribed to this event
 	}
 
 	public void EndGame() {

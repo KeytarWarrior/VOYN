@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MainLevel.unity
     guid: 4bae0ccfc421a3a4ca04da98bab877e4
+  - enabled: 1
+    path: Assets/SpaceShooterLevel.unity
+    guid: 16e6e2140be407f4ab9bf938e7551503
