@@ -47,7 +47,7 @@ namespace Destructible2D
 		public Vector3 MaxScale;
 		
 		private Vector3 oldPosition;
-		
+
 		protected virtual void Start()
 		{
 			oldPosition = transform.position;
@@ -59,7 +59,6 @@ namespace Destructible2D
 			var rayLength    = (newPosition - oldPosition).magnitude;
 			var rayDirection = (newPosition - oldPosition).normalized;
 			var hit          = Physics2D.Raycast(oldPosition, rayDirection, rayLength, RaycastMask);
-			
 			// Update old position to trail behind 
 			if (rayLength > MaxLength)
 			{

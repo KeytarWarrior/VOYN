@@ -31,7 +31,7 @@ namespace Destructible2D
 	public class D2dPlayerSpaceship : MonoBehaviour
 	{
 		[Tooltip("Minimum time between each shot in seconds")]
-		public float ShootDelay = 0.1f;
+		public float ShootDelay = 0.05f;
 
 		[Tooltip("The left gun")]
 		public D2dGun LeftGun;
@@ -61,7 +61,7 @@ namespace Destructible2D
 			if (Input.GetButton("Jump") == true)
 			{
 				// Can we shoot?
-				if (cooldown <= 0.0f)
+				if (cooldown <= 0.6f)
 				{
 					cooldown = ShootDelay;
 

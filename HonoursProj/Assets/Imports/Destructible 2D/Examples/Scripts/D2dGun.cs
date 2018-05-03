@@ -26,7 +26,7 @@ namespace Destructible2D
 	public class D2dGun : MonoBehaviour
 	{
 		[Tooltip("Minimum time between each shot in seconds")]
-		public float ShootDelay = 0.1f;
+		public float ShootDelay = 0.05f;
 
 		[Tooltip("The bullet prefab spawned when shooting")]
 		public GameObject BulletPrefab;
@@ -54,7 +54,14 @@ namespace Destructible2D
 
 				if (BulletPrefab != null)
 				{
-					Instantiate(BulletPrefab, transform.position, transform.rotation);
+					//Vector3 offset = new Vector3(0, 0.5f, 0);
+					Vector3 offset = new Vector3(Random.Range(-0.5F, 0.5F), Random.Range(-0.5F, 0.5F), 0);
+					//Quaternion angleOffset = new Quaternion(0,0,0,0);
+					//Quaternion rotation = Quaternion.Euler(0, 30, 0);
+					//Instantiate(BulletPrefab, transform.position, transform.rotation + angleOffset);
+					Instantiate(BulletPrefab, transform.position + offset, transform.rotation);
+					//GameObject beam = Instantiate(projectile, transform.position + offset, Quaternion.identity) as GameObject;
+					//beam.GetComponent<Rigidbody2D>().velocity = new Vector3(Random.Range(-3.0F, 3.0F), projectileSpeed, 0);
 				}
 
 				if (MuzzleFlashPrefab != null)
