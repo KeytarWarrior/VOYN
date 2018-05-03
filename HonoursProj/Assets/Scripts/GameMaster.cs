@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour {
 
@@ -72,6 +73,8 @@ public class GameMaster : MonoBehaviour {
 			ToggleUpgradeMenu();
 		} else if (Input.GetKeyDown(KeyCode.L)) {
 			ToggleLevelMenu();
+		} else if (Input.GetKeyDown(KeyCode.R)) {
+				SceneManager.LoadScene("MainMenu");
 		}
 	}
 
@@ -84,7 +87,6 @@ public class GameMaster : MonoBehaviour {
 	private void ToggleLevelMenu() {
 		levelMenu.SetActive(!levelMenu.activeSelf); // Sets the state to the opposite of what it currently is - better than hard coding it to on or off		
 		waveSpawner.enabled = !levelMenu.activeSelf; // Makes sure that if the upgrade menu is enabled, the enemy spawner is disabled
-		onToggleUpgradeMenu.Invoke(levelMenu.activeSelf); // Invokes all methods subscribed to this event
 	}
 
 	public void EndGame() {
