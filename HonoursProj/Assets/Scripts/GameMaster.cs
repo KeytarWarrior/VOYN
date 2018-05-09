@@ -126,7 +126,7 @@ public class GameMaster : MonoBehaviour {
 		audioManager.PlaySound(_enemy.deathSoundName);  // Death Sound - Modular so can be setup for different enemies
 
 		Money += _enemy.moneyDrop;  // Adds the Money dropped from enemy to resource. Modular so can be different for different enemy types.
-		audioManager.PlaySound("Money");
+		//audioManager.PlaySound("Money");
 
 		// Adding Particles - Instanced so we can destroy it after it's done 
 		Transform _clone = Instantiate(_enemy.deathParticles, _enemy.transform.position, Quaternion.identity) as Transform;

@@ -4669,7 +4669,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Money: 15'
+  m_Text: 'Credits: 15'
 --- !u!222 &1614997625
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4718,12 +4718,12 @@ Prefab:
     - target: {fileID: 114010110087896538, guid: 5e1d826f984f52440b2efab16344973f,
         type: 2}
       propertyPath: sounds.Array.data[5].volume
-      value: 0.259
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 114010110087896538, guid: 5e1d826f984f52440b2efab16344973f,
         type: 2}
       propertyPath: sounds.Array.data[4].volume
-      value: 0.51
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 114010110087896538, guid: 5e1d826f984f52440b2efab16344973f,
         type: 2}
@@ -4733,7 +4733,7 @@ Prefab:
     - target: {fileID: 114010110087896538, guid: 5e1d826f984f52440b2efab16344973f,
         type: 2}
       propertyPath: sounds.Array.data[5].pitch
-      value: 1
+      value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 114010110087896538, guid: 5e1d826f984f52440b2efab16344973f,
         type: 2}
@@ -4788,7 +4788,7 @@ Prefab:
     - target: {fileID: 114010110087896538, guid: 5e1d826f984f52440b2efab16344973f,
         type: 2}
       propertyPath: sounds.Array.data[12].pitch
-      value: 0.045
+      value: 0.276
       objectReference: {fileID: 0}
     - target: {fileID: 114010110087896538, guid: 5e1d826f984f52440b2efab16344973f,
         type: 2}
@@ -4804,6 +4804,11 @@ Prefab:
         type: 2}
       propertyPath: sounds.Array.data[5].randomPitch
       value: 0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 114010110087896538, guid: 5e1d826f984f52440b2efab16344973f,
+        type: 2}
+      propertyPath: sounds.Array.data[7].volume
+      value: 0.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e1d826f984f52440b2efab16344973f, type: 2}
@@ -4979,6 +4984,16 @@ Prefab:
         type: 2}
       propertyPath: waves.Array.data[0].count
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114225180240796550, guid: bd6aa07905be5dd4699b5af15e33bcd7,
+        type: 2}
+      propertyPath: waves.Array.data[0].rate
+      value: 1.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 114225180240796550, guid: bd6aa07905be5dd4699b5af15e33bcd7,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd6aa07905be5dd4699b5af15e33bcd7, type: 2}
@@ -5157,7 +5172,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Money: 15'
+  m_Text: 'Credits: 15'
 --- !u!222 &1695268880
 CanvasRenderer:
   m_ObjectHideFlags: 0
