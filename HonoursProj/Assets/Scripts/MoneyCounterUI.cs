@@ -13,6 +13,6 @@ public class MoneyCounterUI : MonoBehaviour {
 
 		// Update is called once per frame
 		void Update() {
-			moneyText.text = "MONEY: " + GameMaster.Money.ToString();
+			moneyText.text = "Credits: " + GameMaster.Money.ToString();
 		}
 }
